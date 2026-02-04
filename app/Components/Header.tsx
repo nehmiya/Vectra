@@ -12,7 +12,7 @@ const Header = () => {
     <header>
         <div className="main-container inner">
             <Link href="/">
-            <Image src="/assets/logo (3).png" alt="Vectra Logo" width={200} height={40} />
+            <Image src="/assets/logo-removebg-preview.png" alt="Vectra Logo" width={150} height={100} />
             </Link>
             <nav>
                 <Link href="/" className={cn('nav-link',{
