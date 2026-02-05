@@ -1,10 +1,7 @@
 import React, { Suspense } from "react";
-import DataTable from "@/components/DataTable";
 import Image from "next/image";
 import Link from "next/link";
-import { cn,formatCurrency } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
-import { fetcher } from "@/lib/coingecko.actions";
 import CoinOverview from "@/components/Home/CoinOverview";
 import TrendingCoins from "@/components/Home/TrendingCoins";
 import {
