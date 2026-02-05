@@ -58,37 +58,6 @@ const columns: DataTableColumn<TrendingCoin>[] = [
   },
 ];
 
-// Dummy trending data using local assets so images resolve in dev
-const dummyTrending: TrendingCoin[] = [
-  {
-    item: {
-      id: "bitcoin",
-      name: "Bitcoin",
-      symbol: "btc",
-      market_cap_rank: 1,
-      thumb: "/assets/logo-removebg-preview.png",
-      large: "/assets/logo-removebg-preview.png",
-      data: {
-        price: 72568.4,
-        price_change_percentage_24h: { usd: 2.5 },
-      },
-    },
-  },
-  {
-    item: {
-      id: "ethereum",
-      name: "Ethereum",
-      symbol: "eth",
-      market_cap_rank: 2,
-      thumb: "/assets/logo-removebg-preview.png",
-      large: "/assets/logo-removebg-preview.png",
-      data: {
-        price: 3580.12,
-        price_change_percentage_24h: { usd: -1.2 },
-      },
-    },
-  },
-];
 
 export default async function Home() {
   return (
