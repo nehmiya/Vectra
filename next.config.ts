@@ -6,10 +6,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.coingecko.com"
-      }
-    ]
-  }
+        hostname: "assets.coingecko.com",
+      },
+      {
+        protocol: "https",
+        hostname: "coin-images.coingecko.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

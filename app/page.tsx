@@ -1,9 +1,16 @@
-import React from "react";
+import React, { Suspense } from "react";
 import DataTable from "@/components/DataTable";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn,formatCurrency } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
+import { fetcher } from "@/lib/coingecko.actions";
+import CoinOverview from "@/components/Home/CoinOverview";
+import TrendingCoins from "@/components/Home/TrendingCoins";
+import {
+  CoinOverviewFallback,
+  TrendingCoinsFallback,
+} from "@/components/fallback";
 
 const columns: DataTableColumn<TrendingCoin>[] = [
   {
@@ -83,30 +90,16 @@ const dummyTrending: TrendingCoin[] = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="main-container">
       <section className="home-grid">
-        <div id="coin-overview">
-          <div className="header pt-2">
-            <Image
-              src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-              alt="BitCoin"
-              width={56}
-              height={56}
-            />
-            <div className="info">
-              <p>BitCoin / BTC</p>
-              <h1 className="">$72,568.40</h1>
-            </div>
-          </div>
-        </div>
-        <p>Trending Coins</p>
-        <DataTable
-          data={dummyTrending}
-          columns={columns}
-          rowKey={(row) => row.item.id}
-        />
+        <Suspense fallback={<CoinOverviewFallback />}>
+          <CoinOverview />{" "}
+        </Suspense>
+        <Suspense fallback={<TrendingCoinsFallback />}>
+          <TrendingCoins />{" "}
+        </Suspense>
       </section>
 
       <section className="w-full mt-7 space-y-4">
