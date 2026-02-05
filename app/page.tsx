@@ -8,6 +8,7 @@ import {
   CoinOverviewFallback,
   TrendingCoinsFallback,
 } from "@/components/fallback";
+import { cn } from "@/lib/utils";
 
 const columns: DataTableColumn<TrendingCoin>[] = [
   {
