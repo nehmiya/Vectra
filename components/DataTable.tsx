@@ -16,22 +16,25 @@ const DataTable = <T,>({
   data,
   rowKey,
   tableClassName,
+  headerClassName,
   headerRowClassName,
   headerCellClassName,
   bodyRowClassName,
-  headerClassName,
   bodyCellClassName,
 }: DataTableProps<T>) => {
   return (
     <div>
-      <Table className={cn('custom-scrollbar', tableClassName)}>
+      <Table className={cn("custom-scrollbar", tableClassName)}>
         <TableHeader className={headerClassName}>
-          <TableRow className={cn('hover:bg-transparent!', headerRowClassName)}>
-           {
-            columns.map((column, index) => (
+          <TableRow className={cn("hover:bg-transparent!", headerRowClassName)}>
+            {columns.map((column, index) => (
               <TableHead
                 key={index}
-                className={cn('bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5', headerCellClassName)}
+                className={cn(
+                  "bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5",
+                  headerCellClassName,
+                  column.headClassName,
+                )}
               >
                 {column.header}
               </TableHead>
@@ -39,20 +42,25 @@ const DataTable = <T,>({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {
-            data.map((row,rowIndex)=> (
-              <TableRow key={rowKey(row,rowIndex) } className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative', bodyRowClassName)}>
-                {
-                  columns.map((column,index)=> (
-                    <TableCell key={index} className={cn('py-4 first:pl-5 last:pr-5', bodyCellClassName)}>
-                      {column.cell(row,index)}
-                    </TableCell>
-                  ))
-                }
-              </TableRow>
-            ))
-          }
-          </TableBody>
+          {data.map((row, rowIndex) => (
+            <TableRow
+              key={rowKey(row, rowIndex)}
+              className={cn(
+                "overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative",
+                bodyRowClassName,
+              )}
+            >
+              {columns.map((column, index) => (
+                <TableCell
+                  key={index}
+                  className={cn("py-4 first:pl-5 last:pr-5", bodyCellClassName, column.cellClassName)}
+                >
+                  {column.cell(row, index)}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </div>
   );

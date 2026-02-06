@@ -60,9 +60,11 @@ const CandleStickChart = ({
     }
 
     const showTime = ["daily", "weekly", "monthly"].includes(period);
+    const containerHeight = container.clientHeight || height;
     const chart = createChart(container, {
-      ...getChartConfig(height, showTime),
+      ...getChartConfig(containerHeight, showTime),
       width: container.clientWidth,
+      height: containerHeight,
     });
     const series = chart.addSeries(CandlestickSeries, getCandlestickConfig());
     chart.timeScale().fitContent();
@@ -72,7 +74,8 @@ const CandleStickChart = ({
 
     const observer = new ResizeObserver((entries) => {
       if (!entries.length) return;
-      chart.applyOptions({ width: entries[0].contentRect.width });
+      const { width, height: observedHeight } = entries[0].contentRect;
+      chart.applyOptions({ width, height: observedHeight });
     });
 
     observer.observe(container);
@@ -127,7 +130,7 @@ const CandleStickChart = ({
           ))}
         </div>
       </div>
-      <div ref={chartContainerRef} className="chart" style={{ height }} />
+      <div ref={chartContainerRef} className="chart" />
     </div>
   );
 };

@@ -10,7 +10,9 @@ import TrendingCoins from "@/components/Home/TrendingCoins";
 import {
   CoinOverviewFallback,
   TrendingCoinsFallback,
+  CategoriesFallback,
 } from "@/components/fallback";
+import Categories from "@/components/Home/Categories";
 
 const columns: DataTableColumn<TrendingCoin>[] = [
   {
@@ -72,7 +74,9 @@ export default async function Home() {
       </section>
 
       <section className="w-full mt-7 space-y-4">
-        <p>Categories</p>
+        <Suspense fallback={<CategoriesFallback />}>
+          <Categories />
+        </Suspense>
       </section>
     </main>
   );
