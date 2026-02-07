@@ -53,17 +53,18 @@ const Coins = async ({ searchParams }: NextPageProps) => {
       header: "24h Change",
       cellClassName: "change-cell",
       cell: (coin) => {
-        const isTrendingUp = coin.price_change_percentage_24h > 0;
-
+      const change = coin.price_change_percentage_24h;
+      const isTrendingUp = change != null && change > 0;
+      const isTrendingDown = change != null && change < 0;
         return (
           <span
             className={cn("change-value", {
               "text-green-600": isTrendingUp,
-              "text-red-500": !isTrendingUp,
+              "text-red-500": isTrendingDown,
             })}
           >
             {isTrendingUp && "+"}
-            {formatPercentage(coin.price_change_percentage_24h)}
+            {formatPercentage(change)}
           </span>
         );
       },

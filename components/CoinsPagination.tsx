@@ -13,11 +13,16 @@ import { useRouter } from "next/navigation";
 import { buildPageNumbers, cn, ELLIPSIS } from "@/lib/utils";
 import { Ellipsis } from "lucide-react";
 
+interface CoinsPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  hasMorePages: boolean;
+}
 const CoinsPagination = ({
   currentPage,
   totalPages,
   hasMorePages,
-}: Pagination) => {
+}: CoinsPaginationProps) => {
   const router = useRouter();
 
   const handlePageChange = (page: number) => {
@@ -48,9 +53,12 @@ const CoinsPagination = ({
                 {page === ELLIPSIS ? (
                   <span className="ellipsis">...</span>
                 ) : (
-                  <PaginationLink onClick={()=> handlePageChange(page)} className={cn('page-link', {
-                    'page-link-active' : currentPage ===page
-                  })} >
+                  <PaginationLink
+                    onClick={() => handlePageChange(page)}
+                    className={cn("page-link", {
+                      "page-link-active": currentPage === page,
+                    })}
+                  >
                     {page}
                   </PaginationLink>
                 )}
