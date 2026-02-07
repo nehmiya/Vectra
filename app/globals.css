@@ -226,7 +226,7 @@
     }
 
     .chart {
-      @apply w-full min-h-50;
+      @apply w-full h-96;
     }
   }
 
@@ -442,7 +442,7 @@
     }
 
     .chart {
-      @apply h-90;
+      @apply h-1000;
     }
 
     .chart-skeleton {
