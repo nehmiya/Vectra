@@ -21,12 +21,12 @@ export async function fetcher<T>(
     } , {skipEmptyString: true, skipNull: true})
 
     const response = await fetch(url, {
-        headers: {
-            "x-cg-pro-api-key": API_KEY,
-            "Content-Type": "application/json"
-        } as Record<string, string>,
-        next: { revalidate}
-    })
+      headers: {
+        "x-cg-demo-api-key": API_KEY,
+        "Content-Type": "application/json",
+      } as Record<string, string>,
+      next: { revalidate },
+    });
 
     if (!response.ok) {
         const errorBody : CoinGeckoErrorBody = await response.json().catch(() => ({}))
